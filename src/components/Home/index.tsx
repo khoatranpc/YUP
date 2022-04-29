@@ -1,9 +1,14 @@
+import { getTest } from '@apis/test';
 import { H2 } from '@blueprintjs/core';
 import utilsStyles from '@sharedStyling/utils.module.scss';
+import { useEffect } from 'react';
 
 import styles from './index.module.scss';
 
 const Home = () => {
+  useEffect(() => {
+    getTest();
+  }, []);
   return (
     <div className={styles.container}>
       <H2 className={styles.title}>Welcome to MindX Teaching Manager</H2>
