@@ -1,5 +1,5 @@
 import { H2 } from '@blueprintjs/core';
-import utilsStyles from '@components/shared/styling/utils.module.scss';
+import utilsStyles from '@sharedStyling/utils.module.scss';
 
 import styles from './index.module.scss';
 
@@ -13,4 +13,5 @@ const Home = () => {
     </div>
   );
 };
+
 export default Home;
