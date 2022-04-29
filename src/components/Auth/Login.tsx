@@ -11,6 +11,7 @@ import {
 import AuthContext from 'contexts/auth';
 import { useFormik } from 'formik';
 import { useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import { Navigate } from 'react-router-dom';
 
 import styles from './Login.module.scss';
@@ -34,6 +35,9 @@ const Login = () => {
   }
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>Login | MindX Teaching Manager</title>
+      </Helmet>
       <Card interactive={true} elevation={Elevation.ONE} className={styles.loginCard}>
         <H3>MindX Teaching Manager</H3>
         <form onSubmit={handleSubmit}>

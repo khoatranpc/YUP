@@ -12,7 +12,7 @@ const AuthProtect = (props: Props) => {
   if (!authCtx.user) {
     return <Navigate to="/auth/login" replace />;
   }
-  return props.children || null;
+  return props.children;
 };
 
 export default AuthProtect;

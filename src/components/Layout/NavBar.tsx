@@ -31,6 +31,10 @@ const NavBar = () => {
           <Icon icon={IconNames.CLIPBOARD} />
           <span>Teachers</span>
         </NavLink>
+        <NavLink to="/stats" className={getNavLinkClassNames}>
+          <Icon icon={IconNames.CHART} />
+          <span>Statistic</span>
+        </NavLink>
       </NavbarGroup>
     </Navbar>
   );
