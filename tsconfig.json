@@ -17,10 +17,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@sharedStyling/*": ["components/shared/styling/utils.module.scss"],
+      "@sharedStyling/*": ["components/shared/styling/*"],
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"],
-      "@assets/*": ["assets/*"]
+      "@assets/*": ["assets/*"],
+      "@apis/*": ["apis/*"]
     }
   },
   "include": ["./src"],
