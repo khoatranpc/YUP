@@ -1,43 +1,27 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "lib": [
-            "DOM",
-            "DOM.Iterable",
-            "ESNext"
-        ],
-        "types": [
-            "vite/client"
-        ],
-        "baseUrl": "src",
-        "allowJs": false,
-        "skipLibCheck": true, // Enable it for now, due to new version of React. Should turn back to false if @blueprintjs fix their problem
-        "esModuleInterop": false,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "module": "ESNext",
-        "moduleResolution": "Node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react-jsx",
-        "paths": {
-            "@components/*": [
-                "components/*"
-            ],
-            "@utils/*": [
-                "utils/*"
-            ],
-            "@assets/*": [
-                "assets/*"
-            ],
-        }
-    },
-    "include": [
-        "./src"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["vite/client"],
+    "baseUrl": "src",
+    "allowJs": false,
+    "skipLibCheck": true, // Enable it for now, due to new version of React. Should turn back to false if @blueprintjs fix their problem
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["assets/*"]
+    }
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"]
 }
