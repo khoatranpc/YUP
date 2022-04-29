@@ -1,0 +1,26 @@
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);
+$dim: (
+  't': top,
+  'b': bottom,
+  'l': left,
+  'r': right,
+);
+
+@each $s, $sv in $spacers {
+  @each $d, $v in $dim {
+    .m#{$d}#{$s} {
+      margin-#{$v}: $sv;
+    }
+    .p#{$d}#{$s} {
+      padding-#{$v}: $sv;
+    }
+  }
+}
