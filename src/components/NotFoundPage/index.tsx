@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => {
-  console.log(spacing);
   return (
     <div className={classNames(layout.center, layout.flexCol, size.hFull)}>
       <Icon

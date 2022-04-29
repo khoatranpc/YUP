@@ -8,23 +8,30 @@ import {
   InputGroup,
   Intent,
 } from '@blueprintjs/core';
+import AuthContext from 'contexts/auth';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import styles from './Login.module.scss';
 
 const Login = () => {
-  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
   const { handleSubmit, handleChange, handleBlur, values } = useFormik({
     initialValues: {
       username: '',
       password: '',
     },
     onSubmit: (value) => {
-      console.log(value);
-      navigate('/');
+      authCtx.setUser({
+        username: value.username,
+      });
     },
   });
+
+  if (authCtx.user) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div className={styles.container}>
       <Card interactive={true} elevation={Elevation.ONE} className={styles.loginCard}>
