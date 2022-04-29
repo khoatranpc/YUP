@@ -1,0 +1,25 @@
+@import '@blueprintjs/core/lib/scss/variables';
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.bodyContainer {
+  height: 0px;
+  overflow: auto;
+  flex: 1;
+  padding: 10px 40px 20px;
+}
+
+.body {
+  width: 100%;
+  padding: 20px;
+  background-color: #ffffff;
+  min-height: 700px;
+}
+
+.breadcrumbsContainer {
+  margin-bottom: 5px;
+}

@@ -1,0 +1,17 @@
+@import '@blueprintjs/core/lib/scss/variables';
+
+.container {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: $gray2;
+}
+
+.description {
+  color: $gray2;
+}

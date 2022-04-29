@@ -1,0 +1,10 @@
+@import '@blueprintjs/core/lib/scss/variables';
+
+.code {
+  font-family: monospace;
+  color: $vermilion3;
+  border: 1px solid $light-gray2;
+  background-color: $light-gray5;
+  padding: 3px;
+  border-radius: 5px;
+}

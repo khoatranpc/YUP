@@ -11,7 +11,7 @@
         ],
         "baseUrl": "src",
         "allowJs": false,
-        "skipLibCheck": false,
+        "skipLibCheck": true, // Enable it for now, due to new version of React. Should turn back to false if @blueprintjs fix their problem
         "esModuleInterop": false,
         "allowSyntheticDefaultImports": true,
         "strict": true,

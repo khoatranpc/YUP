@@ -1,53 +1,60 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import {
+  Button,
+  Card,
+  Classes,
+  Elevation,
+  FormGroup,
+  H3,
+  InputGroup,
+  Intent,
+} from '@blueprintjs/core';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+
+import styles from './Login.module.scss';
 
 const Login = () => {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+  const navigate = useNavigate();
+  const { handleSubmit, handleChange, handleBlur, values } = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+    },
+    onSubmit: (value) => {
+      console.log(value);
+      navigate('/');
+    },
+  });
   return (
-    <Form
-      name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{ offset: 8, span: 16 }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    <div className={styles.container}>
+      <Card interactive={true} elevation={Elevation.ONE} className={styles.loginCard}>
+        <H3>MindX Teaching Manager</H3>
+        <form onSubmit={handleSubmit}>
+          <FormGroup label="Username">
+            <InputGroup
+              placeholder="Enter username"
+              name="username"
+              value={values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+          </FormGroup>
+          <FormGroup label="Password">
+            <InputGroup
+              placeholder="Enter password"
+              type="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+          </FormGroup>
+          <Button intent={Intent.PRIMARY} type="submit" className={Classes.FILL}>
+            Login
+          </Button>
+        </form>
+      </Card>
+    </div>
   );
 };
 
