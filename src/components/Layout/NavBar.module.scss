@@ -1,0 +1,22 @@
+@import '@blueprintjs/core/lib/scss/variables';
+
+.navLink {
+  padding: 4px 6px;
+  margin: 2px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  text-decoration: none !important;
+  color: $gray1 !important;
+  &:hover {
+    border-color: $light-gray3;
+    background-color: $light-gray4;
+  }
+  > span {
+    margin-left: 3px;
+  }
+  &.active {
+    border-color: $light-gray1;
+    background-color: $light-gray2;
+  }
+}
