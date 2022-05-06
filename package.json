@@ -13,6 +13,7 @@
   "dependencies": {
     "@blueprintjs/core": "^4.2.1",
     "@blueprintjs/datetime": "^4.1.4",
+    "@blueprintjs/popover2": "^1.2.0",
     "@blueprintjs/select": "^4.1.4",
     "@blueprintjs/table": "^4.1.4",
     "axios": "^0.27.2",
@@ -42,6 +43,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.6.2",

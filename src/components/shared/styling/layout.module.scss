@@ -8,3 +8,18 @@
   display: flex;
   flex-direction: column;
 }
+
+.flex {
+  display: flex;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

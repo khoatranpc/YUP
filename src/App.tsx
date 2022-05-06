@@ -7,6 +7,7 @@ import Layout from '@components/Layout';
 import NotFoundPage from '@components/NotFoundPage';
 import AuthProtect from '@components/shared/AuthProtect';
 import Teacher from '@components/Teacher';
+import Users from '@components/User';
 import AuthContext from 'contexts/auth';
 import { useMemo, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -38,7 +39,8 @@ const App = () => {
           }
         >
           <Route path="" element={<Home />} />
-          <Route path="teacher" element={<Teacher />} />
+          <Route path="teachers" element={<Teacher />} />
+          <Route path="users" element={<Users />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
