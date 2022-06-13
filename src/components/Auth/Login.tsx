@@ -11,7 +11,7 @@ import {
 import { ToastNotice } from '@components/Toast/Toast';
 import AuthContext from 'contexts/auth';
 import { useFormik } from 'formik';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, Navigate } from 'react-router-dom';
 
@@ -21,7 +21,6 @@ import styles from './Login.module.scss';
 
 const Login = () => {
   // toggle  Notification
-  const [handleNotification, setNotification] = useState<boolean>(false);
   const authCtx = useContext(AuthContext);
   const { handleSubmit, handleChange, handleBlur, values } = useFormik({
     initialValues: {
