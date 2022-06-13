@@ -16,7 +16,6 @@ import { Helmet } from 'react-helmet';
 import { Link, Navigate } from 'react-router-dom';
 
 import { login } from '../../apis/auth';
-import { forgotPassword } from '../../apis/forgot-password';
 import styles from './Login.module.scss';
 
 const Login = () => {
