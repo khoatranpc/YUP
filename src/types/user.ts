@@ -3,3 +3,7 @@ export interface User {
   username: string;
   displayName?: string;
 }
+export interface AuthLogin {
+  email: string;
+  password: string;
+}

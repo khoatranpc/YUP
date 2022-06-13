@@ -1,7 +1,9 @@
 import 'normalize.css';
 import './App.css';
 
+import ForgotPassword from '@components/Auth/ForgotPassword';
 import Login from '@components/Auth/Login';
+import ResetPassword from '@components/Auth/Resetpassword';
 import Home from '@components/Home';
 import Layout from '@components/Layout';
 import NotFoundPage from '@components/NotFoundPage';
@@ -30,6 +32,10 @@ const App = () => {
     <AuthContext.Provider value={authCtxValue}>
       <Routes>
         <Route path="/auth/login" element={<Login />} />
+        <Route path="/user">
+          <Route path="forgot-password" element={<ForgotPassword />}></Route>
+          <Route path="reset-password" element={<ResetPassword />}></Route>
+        </Route>
         <Route
           path="/"
           element={

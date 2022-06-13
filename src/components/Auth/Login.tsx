@@ -8,25 +8,49 @@ import {
   InputGroup,
   Intent,
 } from '@blueprintjs/core';
+import { ToastNotice } from '@components/Toast/Toast';
 import AuthContext from 'contexts/auth';
 import { useFormik } from 'formik';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
+import { login } from '../../apis/auth';
+import { forgotPassword } from '../../apis/forgot-password';
 import styles from './Login.module.scss';
 
 const Login = () => {
+  // toggle  Notification
+  const [handleNotification, setNotification] = useState<boolean>(false);
   const authCtx = useContext(AuthContext);
   const { handleSubmit, handleChange, handleBlur, values } = useFormik({
     initialValues: {
-      username: '',
+      email: '',
       password: '',
     },
-    onSubmit: (value) => {
-      authCtx.setUser({
-        username: value.username,
-      });
+    onSubmit: async (value) => {
+      const user = {
+        email: value.email,
+        password: value.password,
+      };
+      const data = await login(user);
+      switch (data.user.isVerified) {
+        case false:
+          // await forgotPassword(value.email);
+          ToastNotice(
+            'Your account has not been verified, we have sent the verification address to your email!',
+          );
+          break;
+        case true:
+          alert('Đăng nhập thành công');
+          break;
+        default:
+          break;
+      }
+      // call Apis Login
+      // authCtx.setUser({
+      //   username: value.username,
+      // });
     },
   });
 
@@ -41,11 +65,11 @@ const Login = () => {
       <Card interactive={true} elevation={Elevation.ONE} className={styles.loginCard}>
         <H3>MindX Teaching Manager</H3>
         <form onSubmit={handleSubmit}>
-          <FormGroup label="Username">
+          <FormGroup label="Email">
             <InputGroup
               placeholder="Enter username"
-              name="username"
-              value={values.username}
+              name="email"
+              value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -63,6 +87,9 @@ const Login = () => {
           <Button intent={Intent.PRIMARY} type="submit" className={Classes.FILL}>
             Login
           </Button>
+          <Link to="/user/forgot-password">
+            <u>Forgot password?</u>
+          </Link>
         </form>
       </Card>
     </div>
