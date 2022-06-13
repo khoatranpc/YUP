@@ -20,7 +20,7 @@ const ForgotPassword = () => {
         if (!email) throw new Error('Email is require!');
         await forgotPassword(email);
         ToastNotice(`Chúng tao đã gửi email cho mày rồi. Check đi ${values.email}`);
-      } catch (error) {
+      } catch (error: any) {
         ToastNotice(error.message);
       }
     },

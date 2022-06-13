@@ -41,7 +41,7 @@ const ResetPassword = () => {
         if (data.status != 201) {
           throw new Error(data.response.data.message);
         }
-      } catch (error) {
+      } catch (error: any) {
         ToastNotice(error.toString());
         const IdTimeOut = setTimeout(() => {
           redirect('/auth/login', { replace: true });
@@ -83,7 +83,7 @@ const ResetPassword = () => {
           redirect('/auth/login', { replace: true });
           return clearTimeout(IdTimeOut);
         }, 2000);
-      } catch (err) {
+      } catch (err: any) {
         ToastNotice(err.message.toString());
       }
     },
