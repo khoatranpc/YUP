@@ -13,7 +13,6 @@ export default ({ mode }) => {
         '/api': {
           target: env.VITE_BACKEND_API_ENDPOINT,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
         },
       },
     },
