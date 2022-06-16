@@ -17,15 +17,21 @@ import { Link, Navigate } from 'react-router-dom';
 
 import { login } from '../../apis/auth';
 import styles from './Login.module.scss';
+import * as Yup from 'yup';
 
 const Login = () => {
   // toggle  Notification
   const authCtx = useContext(AuthContext);
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Required'),
+  });
   const { handleSubmit, handleChange, handleBlur, values } = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
+    // validate schema
+    validationSchema,
     onSubmit: async (value) => {
       const user = {
         email: value.email,
@@ -71,6 +77,7 @@ const Login = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
+            {/* {formik.errors.email && formik.touched.email && <p>{formik.errors.email}</p>} */}
           </FormGroup>
           <FormGroup label="Password">
             <InputGroup
