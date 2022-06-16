@@ -16,8 +16,6 @@ const login = (auth: AuthLogin) => {
   return axios
     .post('/api/user/login', auth)
     .then((result: response) => {
-      console.log(result);
-      
       return result.data;
     })
     .catch((err) => {

@@ -14,10 +14,10 @@ import { useFormik } from 'formik';
 import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, Navigate } from 'react-router-dom';
+import * as Yup from 'yup';
 
 import { login } from '../../apis/auth';
 import styles from './Login.module.scss';
-import * as Yup from 'yup';
 
 const Login = () => {
   // toggle  Notification
