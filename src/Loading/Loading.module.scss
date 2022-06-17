@@ -1,0 +1,25 @@
+.loading {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+  }
+  .loading:after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid rgb(246, 84, 84);
+    border-color: rgb(246, 84, 84) transparent rgb(246, 84, 84) transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

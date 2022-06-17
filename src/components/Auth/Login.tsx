@@ -11,7 +11,9 @@ import {
 import { ToastNotice } from '@components/Toast/Toast';
 import AuthContext from 'contexts/auth';
 import { useFormik } from 'formik';
-import { useContext } from 'react';
+import LoadingStyle from 'Loading/LoadingStyle';
+
+import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, Navigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -21,11 +23,12 @@ import styles from './Login.module.scss';
 
 const Login = () => {
   // toggle  Notification
+  const [Loading, setLoading] = useState<boolean>(false);
   const authCtx = useContext(AuthContext);
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
   });
-  const { handleSubmit, handleChange, handleBlur, values } = useFormik({
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched } = useFormik({
     initialValues: {
       email: '',
       password: '',
@@ -37,7 +40,9 @@ const Login = () => {
         email: value.email,
         password: value.password,
       };
+      setLoading(true);
       const data = await login(user);
+      if (data) setLoading(false);
       switch (data.user.isVerified) {
         case false:
           // await forgotPassword(value.email);
@@ -71,13 +76,15 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <FormGroup label="Email">
             <InputGroup
-              placeholder="Enter username"
+              placeholder="Enter your email"
               name="email"
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {/* {formik.errors.email && formik.touched.email && <p>{formik.errors.email}</p>} */}
+            {errors.email && touched.email && (
+              <span style={{ color: 'red' }}>*{errors.email}</span>
+            )}
           </FormGroup>
           <FormGroup label="Password">
             <InputGroup
@@ -89,9 +96,17 @@ const Login = () => {
               onBlur={handleBlur}
             />
           </FormGroup>
-          <Button intent={Intent.PRIMARY} type="submit" className={Classes.FILL}>
-            Login
-          </Button>
+
+          {Loading ? (
+            <div>
+              <LoadingStyle />
+            </div>
+          ) : (
+            <Button intent={Intent.PRIMARY} type="submit" className={Classes.FILL}>
+              Login
+            </Button>
+          )}
+
           <Link to="/user/forgot-password">
             <u>Forgot password?</u>
           </Link>

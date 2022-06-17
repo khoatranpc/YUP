@@ -1,13 +1,15 @@
 import axios from 'axios';
+import { VerifyAccount } from 'types/user';
 export { verifyAccount };
 
 const verifyAccount = (verifyAccount: any) => {
+  // need type to safe
   return axios
-    .post('/api/user/forgot-password/verify', verifyAccount)
+    .post<VerifyAccount>('/api/user/forgot-password/verify', verifyAccount)
     .then((result) => {
-      return result;
+      return result.data;
     })
     .catch((err) => {
-      return err;
+      return err.response;
     });
 };

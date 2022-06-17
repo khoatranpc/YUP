@@ -7,10 +7,9 @@ interface ResetPassword {
 }
 const resetPassword = (resetPassword: ResetPassword) => {
   return axios
-    .put('/api/user/reset-password', resetPassword)
+    .put<ResetPassword>('/api/user/reset-password', resetPassword)
     .then((result) => {
-      // console.log(result);
-      return result;
+      return result.data;
     })
     .catch((err) => {
       return err;
