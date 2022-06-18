@@ -2,14 +2,14 @@
 import { forgotPassword } from '@apis/forgot-password';
 import { Button, Classes, FormGroup, H5, InputGroup, Intent } from '@blueprintjs/core';
 import { useFormik } from 'formik';
+import LoadingStyle from 'Loading/LoadingStyle';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import * as Yup from 'yup';
 
 import Logo from '../../assets/images/favicon.png';
 import { ToastNotice } from '../Toast/Toast';
 import styles from './ForgotPassword.module.scss';
-import * as Yup from 'yup';
-import { useState } from 'react';
-import LoadingStyle from 'Loading/LoadingStyle';
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required!'),
 });

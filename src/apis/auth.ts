@@ -4,7 +4,7 @@ export { login };
 
 const login = (auth: AuthLogin) => {
   return axios
-    .post<{ user: User; accessToken: String }>('/api/user/login', auth)
+    .post<{ user: User; accessToken: string }>('/api/user/login', auth)
     .then((result) => {
       return result.data;
     })

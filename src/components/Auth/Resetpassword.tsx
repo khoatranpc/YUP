@@ -17,6 +17,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+
 import { verifyAccount } from '../../apis/verify-account';
 import styles from './Resetpassword.module.scss';
 
