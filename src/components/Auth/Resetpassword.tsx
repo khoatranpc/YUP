@@ -9,10 +9,10 @@ import {
   H3,
   InputGroup,
   Intent,
+  Spinner,
 } from '@blueprintjs/core';
 import { ToastNotice } from '@components/Toast/Toast';
 import { useFormik } from 'formik';
-import LoadingStyle from 'Loading/LoadingStyle';
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -20,15 +20,23 @@ import * as Yup from 'yup';
 
 import { verifyAccount } from '../../apis/verify-account';
 import styles from './Resetpassword.module.scss';
-
+import Logo from '../../assets/images/favicon.png';
 const NoticeInvalidURL = () => {
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Your link is Invalid</h1>
-        <Link to={'/auth/login'}>
-          <u>Go to form login now!</u>
-        </Link>
+      <div className={styles.messageInvalidLink}>
+        <Helmet>
+          <title>Invalid Link | MindX Teaching Manager</title>
+        </Helmet>
+        <div className={styles.invalid} style={{ textAlign: 'center' }}>
+          <div className={styles.intro}>
+            <img src={Logo} className={styles.logo} alt="MindX" id="logo-mindx" />
+            <h3>Your link is invalid</h3>
+            <Link to={'/auth/login'}>
+              <u>Redirect to Login here</u>
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );
@@ -42,6 +50,7 @@ const ResetPassword = () => {
   // Message invalid
   const [InvalidURL, setInvalidURL] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+  const [spinner, setSpinner] = useState<boolean>(false);
   // redirect to login form
   const redirect = useNavigate();
 
@@ -66,7 +75,6 @@ const ResetPassword = () => {
       } catch (error: any) {
         // cần chỉnh sửa
         setLoading(false);
-        ToastNotice(error.toString());
         setInvalidURL(true);
       }
     };
@@ -83,7 +91,7 @@ const ResetPassword = () => {
       .oneOf([Yup.ref('newPassword')], "Password's not match")
       .required('Confirm password is required!'),
   });
-  const { handleSubmit, handleChange, handleBlur, values, errors } = useFormik({
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched } = useFormik({
     initialValues: {
       email: query.get('email'),
       newPassword: '',
@@ -99,16 +107,15 @@ const ResetPassword = () => {
           verificationCode: query.get('verificationCode'),
         };
         // call API reset-password
-        const data = await resetPassword(user);
-        if (data.status != 200) {
-          throw new Error(data.data.message);
-        }
-        ToastNotice(data.data.message.toString());
+        setSpinner(true);
+        await resetPassword(user);
+        setSpinner(false);
+        ToastNotice('Reset password successful!');
         // auto redirect do form login
         const IdTimeOut = setTimeout(() => {
           redirect('/auth/login', { replace: true });
           return clearTimeout(IdTimeOut);
-        }, 2000);
+        }, 3000);
       } catch (err: any) {
         ToastNotice(err.message.toString());
       }
@@ -120,7 +127,7 @@ const ResetPassword = () => {
         <Helmet>
           <title>Reset Password | MindX Teaching Manager</title>
         </Helmet>
-        <LoadingStyle />
+        <Spinner className={styles.spinner} />
       </>
     );
   }
@@ -142,13 +149,12 @@ const ResetPassword = () => {
           <title>Reset Password | MindX Teaching Manager</title>
         </Helmet>
         <div>
-          <H2 style={{ textAlign: 'center' }}>Reset Password now!</H2>
           <Card
             interactive={true}
             elevation={Elevation.ONE}
             className={styles.resetpassword_Card}
           >
-            <H3>Reset your password</H3>
+            <H3 style={{ textAlign: 'center' }}>Reset your password</H3>
             <form onSubmit={handleSubmit}>
               <FormGroup label="New password">
                 <InputGroup
@@ -158,8 +164,11 @@ const ResetPassword = () => {
                   value={values.newPassword}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={
+                    errors.newPassword && touched.newPassword ? 'bp4-intent-danger' : ''
+                  }
                 />
-                {errors.newPassword && (
+                {errors.newPassword && touched.newPassword && (
                   <label style={{ color: 'red' }}>*{errors.newPassword}</label>
                 )}
               </FormGroup>
@@ -171,14 +180,23 @@ const ResetPassword = () => {
                   value={values.confirmPassword}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={
+                    errors.confirmPassword && touched.confirmPassword
+                      ? 'bp4-intent-danger'
+                      : ''
+                  }
                 />
-                {errors.confirmPassword && (
+                {errors.confirmPassword && touched.confirmPassword && (
                   <label style={{ color: 'red' }}>*{errors.confirmPassword}</label>
                 )}
               </FormGroup>
-              <Button intent={Intent.PRIMARY} type="submit" className={Classes.FILL}>
-                Reset password
-              </Button>
+              {spinner ? (
+                <Spinner />
+              ) : (
+                <Button intent={Intent.PRIMARY} type="submit" className={Classes.FILL}>
+                  Reset password
+                </Button>
+              )}
             </form>
           </Card>
         </div>
