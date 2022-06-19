@@ -19,8 +19,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import { verifyAccount } from '../../apis/verify-account';
-import styles from './Resetpassword.module.scss';
 import Logo from '../../assets/images/favicon.png';
+import styles from './Resetpassword.module.scss';
 const NoticeInvalidURL = () => {
   return (
     <>
