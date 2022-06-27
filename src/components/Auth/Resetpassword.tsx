@@ -182,9 +182,7 @@ const ResetPassword = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.confirmPassword && touched.confirmPassword
-                      ? INTENT_DANGER
-                      : ''
+                    errors.confirmPassword && touched.confirmPassword ? INTENT_DANGER : ''
                   }
                 />
                 {errors.confirmPassword && touched.confirmPassword && (
