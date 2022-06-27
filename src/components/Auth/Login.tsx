@@ -7,11 +7,11 @@ import {
   H3,
   InputGroup,
   Intent,
+  Spinner,
 } from '@blueprintjs/core';
 import { ToastNotice } from '@components/Toast/Toast';
 import AuthContext from 'contexts/auth';
 import { useFormik } from 'formik';
-import LoadingStyle from 'Loading/LoadingStyle';
 import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, Navigate } from 'react-router-dom';
@@ -44,7 +44,6 @@ const Login = () => {
       if (data) setLoading(false);
       switch (data.user.isVerified) {
         case false:
-          // await forgotPassword(value.email);
           ToastNotice(
             'Your account has not been verified, we have sent the verification address to your email!',
           );
@@ -98,7 +97,7 @@ const Login = () => {
 
           {Loading ? (
             <div>
-              <LoadingStyle />
+              <Spinner />
             </div>
           ) : (
             <Button intent={Intent.PRIMARY} type="submit" className={Classes.FILL}>

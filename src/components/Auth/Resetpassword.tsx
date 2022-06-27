@@ -11,6 +11,7 @@ import {
   Intent,
   Spinner,
 } from '@blueprintjs/core';
+import { INTENT_DANGER } from '@blueprintjs/core/lib/esm/common/classes';
 import { ToastNotice } from '@components/Toast/Toast';
 import { useFormik } from 'formik';
 import { useEffect, useMemo, useState } from 'react';
@@ -182,7 +183,7 @@ const ResetPassword = () => {
                   onBlur={handleBlur}
                   className={
                     errors.confirmPassword && touched.confirmPassword
-                      ? 'bp4-intent-danger'
+                      ? INTENT_DANGER
                       : ''
                   }
                 />
