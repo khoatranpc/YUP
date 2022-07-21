@@ -34,3 +34,8 @@ export interface Teacher {
   skills: string[];
   status: TeacherStatus;
 }
+export interface OptionSearchTeacher {
+  name: string;
+  rateSalary?: string;
+  centre?: string;
+}

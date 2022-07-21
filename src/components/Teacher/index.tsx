@@ -8,11 +8,10 @@ import spacingStyles from '@sharedStyling/spacing.module.scss';
 import classNames from 'classnames';
 import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Teacher, TeacherStatus } from 'types/teacher';
+import { OptionSearchTeacher, Teacher, TeacherStatus } from 'types/teacher';
 
 import CreateTeacherModal from './AddTeacherModal';
 import styles from './index.module.scss';
-
 const TeacherPage = () => {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,10 +45,19 @@ const TeacherPage = () => {
             leftIcon={IconNames.SEARCH}
             style={{ width: 300 }}
             placeholder="Search ..."
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
             rightElement={<Button type="submit" icon={IconNames.ARROW_RIGHT} />}
           />
+          <ul
+            className="listOptions"
+            style={{ float: 'left', listStyle: 'none', padding: '0', margin: '0' }}
+          >
+            <input type="button" value="rateSalary" />
+            <input type="button" value="centre" />
+          </ul>
+          <button style={{ float: 'right' }}>...</button>
         </form>
         <Button
           icon={IconNames.PLUS}
